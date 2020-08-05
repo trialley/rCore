@@ -1,4 +1,7 @@
 # rCore
+make rust arch=x86_64 ARCH=x86_64 -C user
+make sfsimg arch=x86_64 ARCH=x86_64 -C user
+make run ARCH=x86_64 arch=x86_64 -C ./kernel
 
 [![CI](https://github.com/rcore-os/rCore/workflows/CI/badge.svg?branch=master)](https://github.com/rcore-os/rCore/actions)
 

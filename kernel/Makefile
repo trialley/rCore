@@ -28,8 +28,8 @@
 #   EXTRA_NIC = on | off        [ x86_64 only] Add an additional e1000 nic
 #   FEATURES = profile | ...    Add additional features
 
-ARCH ?= riscv64
-MODE ?= release
+ARCH ?= x86_64
+MODE ?= debug
 LOG  ?=
 GRAPHIC ?= off
 SMP  ?= 4
@@ -229,17 +229,18 @@ clean:
 doc:
 	@cargo doc $(build_args) --no-deps --document-private-items
 
+debug: build justdebug
 run: build justrun
 test: build justtest
 
 justrun:
-	@$(qemu) $(qemu_opts)
+	$(qemu)  $(qemu_opts)
 
 justtest:
 	# unavailable now
-	@#$(qemu) $(filter-out -serial mon:stdio, $(qemu_opts)) --append $(INIT) -serial file:../tests/stdout -monitor null
+	@#$(qemu)  $(filter-out -serial mon:stdio, $(qemu_opts)) --append $(INIT) -serial file:../tests/stdout -monitor null
 
-debug: $(kernel) $(kernel_img)
+justdebug: $(kernel) $(kernel_img)
 	@$(qemu) $(qemu_opts) -s -S &
 	@sleep 1
 	@$(gdb) $(kernel) -x ../tools/gdbinit

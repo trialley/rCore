@@ -29,7 +29,7 @@
 #   FEATURES = profile | ...    Add additional features
 
 ARCH ?= x86_64
-MODE ?= debug
+MODE ?= release
 LOG  ?=
 GRAPHIC ?= off
 SMP  ?= 4
@@ -234,7 +234,11 @@ run: build justrun
 test: build justtest
 
 justrun:
-	$(qemu) -S -s  $(qemu_opts)
+ifeq ($(MODE), debug)
+	$(qemu) -S -s $(qemu_opts)
+else
+	$(qemu) $(qemu_opts)
+endif
 
 justtest:
 	# unavailable now

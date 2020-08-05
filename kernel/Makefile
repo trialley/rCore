@@ -234,7 +234,7 @@ run: build justrun
 test: build justtest
 
 justrun:
-	$(qemu)  $(qemu_opts)
+	$(qemu) -S -s  $(qemu_opts)
 
 justtest:
 	# unavailable now

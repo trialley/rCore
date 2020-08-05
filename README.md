@@ -1,8 +1,8 @@
 # rCore
-make rust arch=x86_64 ARCH=x86_64 -C user
+make musl-gcc arch=x86_64 ARCH=x86_64 -C user
 make sfsimg arch=x86_64 ARCH=x86_64 -C user
-make run ARCH=x86_64 arch=x86_64 -C ./kernel
-
+make run ARCH=x86_64 arch=x86_64 NET=om met=on -C ./kernel
+musl-gcc
 [![CI](https://github.com/rcore-os/rCore/workflows/CI/badge.svg?branch=master)](https://github.com/rcore-os/rCore/actions)
 
 Rust version of THU [uCore OS Plus](https://github.com/chyyuu/ucore_os_plus).
